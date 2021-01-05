@@ -30,7 +30,7 @@ class BlogPostTemplate extends React.Component {
                 display: 'block',
               }}
             >
-              {post.publishDate}
+              {post.publishDate} - {post.tags}
             </p>
             <div
               dangerouslySetInnerHTML={{
@@ -51,6 +51,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        tags
       }
     }
     contentfulBlogPost(slug: { eq: $slug }) {
@@ -61,6 +62,7 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid_tracedSVG
         }
       }
+      tags
       body {
         childMarkdownRemark {
           html
